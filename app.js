@@ -1,5 +1,6 @@
 //jshint esversion:6
 require('dotenv').config();
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
@@ -92,6 +93,8 @@ app.get("/register", function (req,res) {
 })
 
 app.get("/secrets", function (req, res) {
+
+    //  PROBLEM check userid not the secret for individual secret. This is sharing secret page
     User.find({"secret":{$ne:null}}, function (err, foundUser) {
         if(err){
             console.log(err);
@@ -131,6 +134,7 @@ app.get("/logout", function (req, res) {
     req.logout();
     res.redirect("/");
 })
+
 // Update code
 // Login and registration -------------------------------------------------------------
 app.post("/register", function (req,res) { 
